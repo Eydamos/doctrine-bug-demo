@@ -1,0 +1,40 @@
+doctrine:
+    dbal:
+        default_connection: my_aaa_connection
+        connections:
+            my_aaa_connection:
+                driver: pdo_mysql
+                host: '127.0.0.1'
+                user: 'root'
+                password: 'root'
+                dbname: 'test'
+                server_version: '5.7'
+            my_zzz_connection:
+                driver: pdo_mysql
+                host: '127.0.0.1'
+                user: 'root'
+                password: 'root'
+                dbname: 'test'
+                server_version: '5.7'
+    orm:
+        auto_generate_proxy_classes: true
+        default_entity_manager: my_aaa_connection
+        entity_managers:
+            my_aaa_connection:
+                naming_strategy: doctrine.orm.naming_strategy.underscore
+                connection: my_aaa_connection
+                mappings:
+                    ConnA:
+                        type: annotation
+                        dir: '%kernel.project_dir%/src/Entity/ConnA'
+                        prefix: App\Entity\ConnA
+                        alias: ConnA
+            my_zzz_connection:
+                naming_strategy: doctrine.orm.naming_strategy.underscore
+                connection: my_zzz_connection
+                mappings:
+                    ConnZ:
+                        type: annotation
+                        dir: '%kernel.project_dir%/src/Entity/ConnZ'
+                        prefix: App\Entity\ConnZ
+                        alias: ConnZ
